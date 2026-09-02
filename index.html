@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MY LEARNING JOURNEY ｜ 我的六堂課</title>
+  <title>我在企業導生社，走過的路 ｜ 東海大學企業導生社</title>
+  <!-- 引入高清截圖庫 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- 引入精緻字體 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,700;0,800;1,300&family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,600;0,800;1,300&family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --bg: #F4F1EA;
-      --ink: #171717;
       --paper: #FAF8F5;
-      --line: #D8D2C4;
-      --subtle: #797670;
-      --accent-green: #D9FF5A;
-      --accent-coral: #FF5A36;
-      --font-serif: 'Noto Serif TC', serif;
+      --ink: #171717;
+      --subtle: #66635B;
+      --line: #D5CFBF;
+      --line-dark: #A39B8B;
+      --accent-lime: #D9FF5A;
+      --thu-blue: #14284B;
+      --font-serif: 'Noto Serif TC', Georgia, serif;
       --font-sans: 'Noto Sans TC', -apple-system, sans-serif;
       --font-display: 'Plus Jakarta Sans', sans-serif;
     }
@@ -29,444 +32,569 @@
       background-color: var(--bg);
       color: var(--ink);
       font-family: var(--font-sans);
-      line-height: 1.6;
+      line-height: 1.65;
       overflow-x: hidden;
       letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* 頂部固定軌跡進度條 */
-    .journey-tracker {
+    /* 頂部固定進度條 */
+    .top-progress-bar {
       position: sticky;
       top: 0;
       background: rgba(244, 241, 234, 0.94);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--line);
-      z-index: 100;
-      padding: 12px 20px;
+      z-index: 99;
+      padding: 10px 20px;
     }
-    .tracker-inner {
-      max-width: 680px;
+    .progress-inner {
+      max-width: 640px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-    .tracker-status {
       font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
-    .stepper-dots {
+    .progress-steps {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
-    .step-dot {
-      width: 24px;
-      height: 6px;
+    .p-step {
+      width: 16px;
+      height: 4px;
       background: var(--line);
       border-radius: 2px;
       transition: background 0.3s;
     }
-    .step-dot.active {
+    .p-step.active {
       background: var(--ink);
     }
 
     .container {
-      max-width: 680px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
     }
 
-    /* 情緒首頁 Intro */
-    .editorial-hero {
-      padding: 80px 0 60px 0;
+    /* =========================================
+       01 區：HERO 首頁
+    ========================================= */
+    .section-hero {
+      padding: 70px 0 50px 0;
       border-bottom: 1px solid var(--line);
     }
-    .hero-tag {
+    .thu-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--thu-blue);
       text-transform: uppercase;
-      color: var(--subtle);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .thu-badge::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--thu-blue);
     }
     .hero-title {
       font-family: var(--font-serif);
-      font-size: 3rem;
+      font-size: 2.7rem;
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.2;
       letter-spacing: -0.03em;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      color: var(--ink);
     }
-    .hero-title span {
-      display: block;
-      font-family: var(--font-display);
-      font-weight: 300;
-      font-style: italic;
-      font-size: 2.2rem;
-      color: var(--subtle);
-    }
-    .hero-manifesto {
-      font-family: var(--font-serif);
+    .hero-subtitle {
+      font-family: var(--font-sans);
       font-size: 1.05rem;
       color: var(--subtle);
-      line-height: 1.9;
-      margin-bottom: 32px;
+      margin-bottom: 30px;
+      font-weight: 400;
+      line-height: 1.8;
     }
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--ink);
-      text-decoration: none;
-      cursor: pointer;
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 4px;
-    }
-
-    /* 旅程章節列表 */
-    .timeline-stream {
-      padding: 60px 0;
-    }
-    .station-item {
-      position: relative;
-      padding-bottom: 70px;
-      margin-left: 20px;
-      border-left: 1px solid var(--line);
-      padding-left: 32px;
-    }
-    .station-item:last-child {
-      border-left: 1px solid transparent;
-      padding-bottom: 0;
-    }
-    .station-dot {
-      position: absolute;
-      left: -6px;
-      top: 4px;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--ink);
-      transition: all 0.3s;
-    }
-    .station-item.has-content .station-dot {
-      background: var(--ink);
-      box-shadow: 0 0 0 4px rgba(217, 255, 90, 0.6);
-    }
-
-    .station-meta {
+    .hero-path-preview {
       display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 6px;
-    }
-    .station-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--ink);
-    }
-    .station-tagline {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-    .station-topic {
-      font-size: 0.85rem;
-      color: var(--subtle);
-      margin-bottom: 16px;
-    }
-
-    /* 作品展台 */
-    .artwork-stage {
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 2px;
-      padding: 16px;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    .artwork-stage:hover {
-      border-color: var(--ink);
-    }
-    .artwork-frame {
-      width: 100%;
-      min-height: 220px;
-      background: #EBE7DD;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-    .artwork-frame img {
-      width: 100%;
-      height: auto;
-      max-height: 380px;
-      object-fit: contain;
-      display: block;
-    }
-    .artwork-placeholder {
-      text-align: center;
-      color: var(--subtle);
-      font-size: 0.85rem;
-      padding: 30px 10px;
-    }
-    .hover-badge {
-      display: none;
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: var(--ink);
-      color: var(--bg);
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      font-weight: 600;
-      border-radius: 2px;
-    }
-    .artwork-stage:hover .hover-badge {
-      display: block;
-    }
-
-    /* 記憶呢喃 */
-    .station-memory {
-      margin-top: 14px;
-    }
-    .memory-label {
-      font-size: 0.75rem;
       font-family: var(--font-display);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--subtle);
-      margin-bottom: 4px;
-      display: block;
-    }
-    .memory-input {
-      width: 100%;
-      border: none;
-      border-bottom: 1px solid var(--line);
-      background: transparent;
-      padding: 6px 0;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .memory-input:focus {
-      border-color: var(--ink);
-    }
-    .memory-input::placeholder {
-      color: #B4AEA1;
-      font-style: italic;
-    }
-
-    /* 第6堂：回顧沉澱區 */
-    .summary-section {
-      background: #EAE5D9;
-      padding: 36px 28px;
-      border: 1px solid var(--line);
-      margin: 40px 0 80px 0;
-    }
-    .summary-heading {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .summary-sub {
-      font-size: 0.85rem;
       color: var(--subtle);
       margin-bottom: 24px;
+      border-radius: 2px;
     }
-    .summary-block {
-      margin-bottom: 20px;
-    }
-    .summary-block label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-    }
-    .summary-textarea {
-      width: 100%;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      padding: 12px;
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      color: var(--ink);
-      outline: none;
-      resize: vertical;
-    }
-
-    .btn-curate {
-      width: 100%;
-      background: var(--ink);
-      color: var(--bg);
-      border: none;
-      padding: 18px 24px;
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
+    .hero-path-preview span { color: var(--ink); }
+    .hero-cta-btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: transform 0.1s;
-    }
-    .btn-curate:hover {
-      background: #000;
-    }
-    .btn-curate:active {
-      transform: scale(0.99);
-    }
-
-    /* =======================================
-       9:16 IG STORY 規格成果卡
-    ======================================= */
-    .card-stage-overlay {
-      display: none;
-      margin-top: 40px;
-      padding-bottom: 80px;
-    }
-    
-    #story-canvas-export {
-      width: 100%;
-      max-width: 420px;
-      aspect-ratio: 9 / 16;
-      margin: 0 auto;
-      background: #111111;
-      color: #FAF8F5;
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      gap: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 4px;
+      transition: opacity 0.2s;
     }
 
-    .export-top-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      padding-bottom: 12px;
+    /* =========================================
+       02 區：這段路，是怎麼開始的？
+    ========================================= */
+    .section-origin {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--line);
     }
-    .export-brand {
+    .section-tag {
       font-family: var(--font-display);
       font-size: 0.75rem;
       font-weight: 800;
       letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 8px;
     }
-    .export-date {
-      font-size: 0.75rem;
-      font-family: var(--font-display);
-      color: #999;
-    }
-
-    .export-header {
-      margin: 16px 0;
-    }
-    .export-main-title {
+    .origin-title {
       font-family: var(--font-serif);
       font-size: 1.8rem;
-      line-height: 1.2;
-      font-weight: 900;
-      color: #FFF;
+      font-weight: 700;
+      margin-bottom: 20px;
     }
-    .export-main-title span {
-      display: block;
-      color: var(--accent-green);
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
+    .origin-narrative {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #333;
+      margin-bottom: 24px;
+    }
+    .origin-pill {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: #E8E2D3;
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: var(--ink);
     }
 
-    /* 成果卡微型策展牆 */
-    .export-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin: 12px 0;
-    }
-    .export-gallery-item {
-      background: #222;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      border-radius: 2px;
+    /* =========================================
+       03 區：START 加入社團前，我是誰？
+    ========================================= */
+    .section-start {
+      padding: 60px 0 40px 0;
       position: relative;
     }
-    .export-gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .road-node-head {
+      text-align: center;
+      margin-bottom: 30px;
     }
-    .export-gallery-tag {
-      position: absolute;
-      bottom: 2px;
-      left: 3px;
-      font-size: 0.55rem;
+    .road-label {
+      display: inline-block;
       font-family: var(--font-display);
-      font-weight: 700;
-      background: rgba(0,0,0,0.7);
-      padding: 1px 4px;
-      color: #FFF;
+      font-weight: 900;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      padding: 4px 12px;
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .start-prompt-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 24px;
+      margin-bottom: 40px;
     }
 
-    /* 成果卡文字對照 */
-    .export-quotes-box {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 12px;
+    /* =========================================
+       04 & 05 區：S-CURVE 成長地圖本體 (01~06)
+    ========================================= */
+    .journey-map-track {
+      position: relative;
+      padding: 20px 0 60px 0;
+    }
+    
+    /* 蜿蜒微錯位卡片 */
+    .map-station {
+      position: relative;
+      margin-bottom: 60px;
+      width: 92%;
+    }
+    .map-station.shift-left {
+      margin-right: auto;
+      margin-left: 0;
+    }
+    .map-station.shift-right {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    /* 連接虛線指示 */
+    .map-connector {
+      width: 2px;
+      height: 48px;
+      background: repeating-linear-gradient(to bottom, var(--line-dark), var(--line-dark) 4px, transparent 4px, transparent 8px);
+      margin: 0 auto;
+    }
+
+    .station-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--ink);
+      padding: 22px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .station-box:hover {
+      border-color: var(--ink);
+    }
+
+    .station-num-row {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--subtle);
     }
-    .export-quote-item {
-      font-size: 0.78rem;
-      line-height: 1.45;
+    .station-headline {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink);
     }
-    .export-quote-item .q-label {
+    .station-quote-sub {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      color: var(--subtle);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .station-detail-item {
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+    }
+    .station-detail-item strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 3px;
+    }
+
+    /* 作品照片展台 */
+    .photo-stage {
+      width: 100%;
+      min-height: 180px;
+      background: #EBE6DA;
+      border: 1px dashed var(--line-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .photo-stage img {
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: contain;
+      display: block;
+    }
+    .photo-empty-state {
+      text-align: center;
+      padding: 24px;
+      color: var(--subtle);
+    }
+    .photo-empty-state .icon { font-size: 1.4rem; margin-bottom: 4px; }
+    .photo-hover-tag {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(23,23,23,0.85);
+      color: #FFF;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      font-weight: 600;
+      display: none;
+    }
+    .photo-stage:hover .photo-hover-tag {
+      display: block;
+    }
+
+    /* 當時的我填寫框 */
+    .then-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line-dark);
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      padding: 8px 0;
+      outline: none;
+      color: var(--ink);
+      transition: border-color 0.2s;
+    }
+    .then-input:focus {
+      border-bottom-color: var(--ink);
+    }
+    .then-input::placeholder {
+      color: #A9A293;
+      font-style: italic;
+    }
+
+    /* =========================================
+       06 區：NOW 現在的我 (自我對照)
+    ========================================= */
+    .section-now {
+      padding: 50px 0;
+      background: #ECE7DC;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 40px -20px;
+      padding: 40px 20px;
+    }
+    .contrast-box {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .contrast-card {
+      background: var(--paper);
+      padding: 18px;
+      border: 1px solid var(--line);
+    }
+    .contrast-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--subtle);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    /* =========================================
+       07 區：NEXT 下一站，我想往哪裡走？
+    ========================================= */
+    .section-next {
+      padding: 50px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .next-field {
+      margin-bottom: 18px;
+    }
+    .next-field label {
+      display: block;
       font-family: var(--font-display);
       font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--subtle);
+      margin-bottom: 6px;
+    }
+    .next-field input {
+      width: 100%;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 12px;
+      font-size: 0.95rem;
+      font-family: var(--font-serif);
+      outline: none;
+    }
+    .next-field input:focus {
+      border-color: var(--ink);
+    }
+
+    /* 大結尾生成按鈕 */
+    .action-generate {
+      text-align: center;
+      padding: 60px 0 40px 0;
+    }
+    .btn-main {
+      width: 100%;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      padding: 20px 24px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-main:hover {
+      background: #000;
+    }
+    .btn-main:active {
+      transform: scale(0.99);
+    }
+
+    /* =========================================
+       08 & 09 區：MY GROWTH MAP 視覺成果卡
+    ========================================= */
+    .result-wrapper {
+      display: none;
+      padding-bottom: 90px;
+    }
+    
+    /* 成果卡本體 (專為 9:16 IG Story 與手機長按儲存優化) */
+    #growth-map-poster {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      background: #121212;
+      color: #F4F1EA;
+      padding: 34px 26px;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      border: 1px solid #333;
+    }
+
+    .poster-header {
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+    .poster-brand-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #AAA;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .poster-main-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #FFF;
+    }
+    .poster-main-title span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-lime);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* 海報時間軸縮略圖 */
+    .poster-timeline-flow {
+      margin: 16px 0;
+      border-left: 1px dashed rgba(255,255,255,0.25);
+      padding-left: 14px;
+      margin-left: 8px;
+    }
+    .poster-flow-node {
+      position: relative;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .poster-flow-node::before {
+      content: "";
+      position: absolute;
+      left: -19px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-lime);
+    }
+    .poster-flow-thumb {
+      width: 48px;
+      height: 48px;
+      background: #252525;
+      border: 1px solid rgba(255,255,255,0.15);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .poster-flow-meta {
+      font-size: 0.75rem;
+    }
+    .poster-flow-title {
+      font-weight: 700;
+      color: #FFF;
+      font-family: var(--font-sans);
+    }
+    .poster-flow-saying {
+      font-family: var(--font-serif);
+      color: #BBB;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 250px;
+    }
+
+    /* 海報底部對照 */
+    .poster-now-next {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 14px;
+      margin-top: 14px;
+    }
+    .p-nn-item {
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .p-nn-item:last-child { margin-bottom: 0; }
+    .p-nn-label {
+      font-family: var(--font-display);
+      font-weight: 800;
       font-size: 0.65rem;
       letter-spacing: 0.1em;
-      color: var(--accent-green);
+      color: var(--accent-lime);
       display: block;
-      margin-bottom: 2px;
     }
-    .export-quote-item .q-text {
+    .p-nn-text {
       font-family: var(--font-serif);
       color: #E2E2E2;
     }
 
-    .export-footer-bar {
-      margin-top: 8px;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 8px;
+    .poster-footer {
+      margin-top: 16px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-size: 0.65rem;
       color: #777;
       font-family: var(--font-display);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 10px;
     }
 
-    .save-actions {
-      max-width: 420px;
+    .poster-actions {
+      max-width: 440px;
       margin: 20px auto 0 auto;
       text-align: center;
     }
@@ -474,283 +602,426 @@
 </head>
 <body>
 
-  <div class="journey-tracker">
-    <div class="tracker-inner">
-      <div class="tracker-status" id="journey-percentage">01 / 06 STATIONS</div>
-      <div class="stepper-dots">
-        <div class="step-dot active" id="dot-1"></div>
-        <div class="step-dot" id="dot-2"></div>
-        <div class="step-dot" id="dot-3"></div>
-        <div class="step-dot" id="dot-4"></div>
-        <div class="step-dot" id="dot-5"></div>
-        <div class="step-dot" id="dot-6"></div>
+  <!-- 固定頂端進度 -->
+  <div class="top-progress-bar">
+    <div class="progress-inner">
+      <span id="tracker-text">THU MENTORSHIP 2026</span>
+      <div class="progress-steps" id="progress-dots">
+        <div class="p-step active"></div>
+        <div class="p-step"></div>
+        <div class="p-step"></div>
+        <div class="p-step"></div>
+        <div class="p-step"></div>
+        <div class="p-step"></div>
+        <div class="p-step"></div>
       </div>
     </div>
   </div>
 
   <div class="container">
     
-    <section class="editorial-hero">
-      <div class="hero-tag">PERSONAL ARCHIVE 2026</div>
-      <h1 class="hero-title">
-        你還記得，
-        <span>第一堂課的自己嗎？</span>
-      </h1>
-      <p class="hero-manifesto">
-        六堂課以前，你怎麼想像自己的未來？<br>
-        不必迎合任何人，不需要嚴肅的報告。<br>
-        把每一站留下的軌跡拼起來，看看你已經走了多遠。
+    <!-- 01 區：首頁 Hero -->
+    <header class="section-hero">
+      <div class="thu-badge">THU 企業導生社 ｜ 2026 下學期</div>
+      <h1 class="hero-title">我在企業導生社，<br>走過的路</h1>
+      <p class="hero-subtitle">
+        六堂課，一段從「不知道自己要去哪裡」到「開始知道自己可以往哪裡走」的過程。
       </p>
-      <a href="#station-1" class="hero-cta">從起點開始回看 ↓</a>
+
+      <div class="hero-path-preview">
+        <span>START</span> → 01 → 02 → 03 → 04 → 05 → 06 → <span>NOW</span> → <span>NEXT</span>
+      </div>
+
+      <a href="#section-origin" class="hero-cta-btn">開始回看這段路 ↓</a>
+    </header>
+
+    <!-- 02 區：這段路，是怎麼開始的？ -->
+    <section class="section-origin" id="section-origin">
+      <div class="section-tag">ORIGIN & STORY</div>
+      <h2 class="origin-title">這段路，是怎麼開始的？</h2>
+      <p class="origin-narrative">
+        我加入了東海大學企業導生社。<br>
+        在這裡，我沒有一次找到所有答案。<br>
+        而是用六堂課，一點一點認識自己、表達自己，看見未來的不同可能。<br><br>
+        這張地圖，記錄的不是我最後變成誰，而是我曾經怎麼走到這裡。
+      </p>
+      <span class="origin-pill">一學期・六堂課・六個留下來的自己</span>
     </section>
 
-    <div class="timeline-stream" id="timeline-stream">
+    <!-- 03 區：START 加入社團前，我是誰？ -->
+    <section class="section-start">
+      <div class="road-node-head">
+        <span class="road-label">START</span>
+      </div>
+      
+      <div class="start-prompt-card">
+        <div class="section-tag" style="margin-bottom:4px;">加入企業導生社之前</div>
+        <h3 style="font-family: var(--font-serif); font-size:1.2rem; margin-bottom:12px;">我帶著什麼期待來？當時我是誰？</h3>
+        <input type="text" class="then-input" id="start-thought" 
+               placeholder="「我當時其實還不知道未來要往哪裡走……」"
+               onchange="saveField('startThought', this.value)">
       </div>
 
-    <section class="summary-section" id="station-6">
-      <div class="station-meta" style="margin-bottom: 4px;">
-        <span class="station-num" style="font-size: 0.9rem;">06</span>
-        <span style="font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">回顧 ｜ 我的成長</span>
-      </div>
-      <h2 class="summary-heading">走到這裡，你看見了什麼？</h2>
-      <p class="summary-sub">不用寫長篇大論，誠實對照當初與現在的自己。</p>
+      <div class="map-connector"></div>
+    </section>
 
-      <div class="summary-block">
-        <label>六堂課後的我 ── 現在的我，有什麼不同？</label>
-        <textarea class="summary-textarea" rows="2" id="summary-now" placeholder="「現在我發現自己其實更擅長……」" onchange="saveSummary()"></textarea>
+    <!-- 04 & 05 區：JOURNEY 六堂課蜿蜒路徑 (01~06) -->
+    <div class="journey-map-track" id="journey-stations-container">
+      <!-- 站點由 JavaScript 動態生成 -->
+    </div>
+
+    <!-- 06 區：NOW 走完這段路，我有什麼不同？ -->
+    <section class="section-now">
+      <div class="road-node-head">
+        <span class="road-label" style="background:var(--thu-blue); color:#FFF;">NOW</span>
+      </div>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <h2 style="font-family: var(--font-serif); font-size: 1.6rem;">現在的我：我看見了什麼變化？</h2>
+        <p style="font-size: 0.85rem; color: var(--subtle); margin-top: 4px;">走過這六堂課，我對自己多知道了一點什麼？</p>
       </div>
 
-      <div class="summary-block">
-        <label>下一站 ── 接下來，我想往哪裡走？</label>
-        <textarea class="summary-textarea" rows="2" id="summary-next" placeholder="「我想先試著去完成……」" onchange="saveSummary()"></textarea>
+      <div class="contrast-box">
+        <div class="contrast-card">
+          <span class="contrast-title">起點 ｜ 當時的我</span>
+          <div style="font-family: var(--font-serif); font-size: 0.95rem;" id="preview-start-text">「尚未填寫起點想法」</div>
+        </div>
+
+        <div class="contrast-card" style="border-left: 3px solid var(--ink);">
+          <span class="contrast-title">現在 ｜ 走到這裡的我</span>
+          <textarea class="then-input" rows="2" id="now-reflection" 
+                    placeholder="「我還沒有所有答案，但我知道自己可以從……開始探索。」" 
+                    onchange="saveField('nowReflection', this.value)"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <div class="map-connector" style="margin: 30px auto;"></div>
+
+    <!-- 07 區：NEXT 下一步我要去哪裡？ -->
+    <section class="section-next">
+      <div class="road-node-head">
+        <span class="road-label" style="background:#4A5568; color:#FFF;">NEXT</span>
+      </div>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="font-family: var(--font-serif); font-size: 1.6rem;">下一站，我想往哪裡走？</h2>
+        <p style="font-size: 0.85rem; color: var(--subtle);">這不是終點，只是下一站的起步。</p>
       </div>
 
-      <button class="btn-curate" onclick="curateMyStory()">
-        <span>✦ 生成我的成長地圖 (IG Story)</span>
+      <div class="next-field">
+        <label>我想探索的方向：</label>
+        <input type="text" id="next-explore" placeholder="例如：品牌企劃、ESG 專案、數據分析……" onchange="saveNext()">
+      </div>
+
+      <div class="next-field">
+        <label>我想培養的能力：</label>
+        <input type="text" id="next-skill" placeholder="例如：說服簡報力、跨部門溝通、專案拆解……" onchange="saveNext()">
+      </div>
+
+      <div class="next-field">
+        <label>我想開始做的一件小事：</label>
+        <input type="text" id="next-action" placeholder="例如：報名一場商業競賽、每週讀一篇產業分析……" onchange="saveNext()">
+      </div>
+    </section>
+
+    <!-- 08 區：生成我的企業導生社成長地圖 -->
+    <section class="action-generate">
+      <button class="btn-main" onclick="generateGrowthMap()">
+        ✦ 生成「我在企業導生社，走過的路」成長地圖
       </button>
     </section>
 
-    <div class="card-stage-overlay" id="curated-result">
-      <div id="story-canvas-export">
-        <div>
-          <div class="export-top-meta">
-            <span class="export-brand">THU EMBA × ARCHIVE</span>
-            <span class="export-date" id="export-live-date">2026</span>
+    <!-- 09 區：成果海報展示與下載 (IG Story 9:16 風格) -->
+    <div class="result-wrapper" id="poster-display-area">
+      <div id="growth-map-poster">
+        
+        <div class="poster-header">
+          <div class="poster-brand-row">
+            <span>THU 東海大學企業導生社</span>
+            <span>2026 下學期</span>
           </div>
-
-          <div class="export-header">
-            <h3 class="export-main-title">
-              MY JOURNEY
-              <span>六堂課的自我對照</span>
-            </h3>
-          </div>
-
-          <div class="export-gallery-grid" id="export-gallery"></div>
+          <h2 class="poster-main-title">
+            我在企業導生社，走過的路
+            <span>MY GROWTH MAP</span>
+          </h2>
         </div>
 
-        <div class="export-quotes-box">
-          <div class="export-quote-item">
-            <span class="q-label">START ｜ 起點的我</span>
-            <div class="q-text" id="card-start-quote">「尚未留下字句」</div>
+        <!-- 串接成果縮略地圖 -->
+        <div class="poster-timeline-flow" id="poster-nodes-flow">
+          <!-- JS 自動填入 6 堂縮圖與金句 -->
+        </div>
+
+        <!-- NOW & NEXT 總結對照 -->
+        <div class="poster-now-next">
+          <div class="p-nn-item">
+            <span class="p-nn-label">START ｜ 起點</span>
+            <div class="p-nn-text" id="p-start-val">「帶著不確定出發」</div>
           </div>
-          <div class="export-quote-item">
-            <span class="q-label">NOW ｜ 走到這裡</span>
-            <div class="q-text" id="card-now-quote">「逐步釐清自己的核心方向」</div>
+          <div class="p-nn-item">
+            <span class="p-nn-label">NOW ｜ 現在的我</span>
+            <div class="p-nn-text" id="p-now-val">「開始看見自己的形狀」</div>
           </div>
-          <div class="export-quote-item">
-            <span class="q-label">NEXT ｜ 下一步</span>
-            <div class="q-text" id="card-next-quote">「帶著這些積累，繼續探索」</div>
+          <div class="p-nn-item">
+            <span class="p-nn-label">NEXT ｜ 下一站目標</span>
+            <div class="p-nn-text" id="p-next-val">「持續探索與行動」</div>
           </div>
         </div>
 
-        <div class="export-footer-bar">
-          <span>PORTFOLIO RECORD</span>
-          <span>GROWTH MAP</span>
+        <div class="poster-footer">
+          <span>一學期・六堂課・六個留下來的自己</span>
+          <span>PORTFOLIO 2026</span>
         </div>
+
       </div>
 
-      <div class="save-actions">
-        <button class="btn-curate" style="background: #171717; margin-bottom: 12px;" onclick="downloadStoryImage()">
-          儲存我的成長卡 (PNG)
+      <div class="poster-actions">
+        <button class="btn-main" style="background:#14284B; margin-bottom: 12px;" onclick="downloadGrowthImage()">
+          儲存個人成長地圖 (PNG)
         </button>
-        <p style="font-size: 0.8rem; color: var(--subtle);">手機可直接長按圖片儲存，或點擊下載分享至 Instagram Story</p>
+        <p style="font-size: 0.8rem; color: var(--subtle);">
+          手機長按海報即可儲存至相簿，支援 9:16 Instagram Story 分享
+        </p>
       </div>
     </div>
 
   </div>
 
   <script>
-    const curriculum = [
-      { id: 1, name: "看見", subtitle: "職涯期待", prompt: "那時候的我，以為自己想走向……" },
-      { id: 2, name: "認識", subtitle: "自我探索", prompt: "這堂課讓我稍微看清楚……" },
-      { id: 3, name: "表達", subtitle: "我的Pitch", prompt: "站上去分享時，我發現……" },
-      { id: 4, name: "呈現", subtitle: "我的名片", prompt: "如果要用一個關鍵字定義自己……" },
-      { id: 5, name: "探索", subtitle: "我的未來", prompt: "對於即將走出的下一步……" }
+    // 六堂課標準結構 (固定 4 大核心元素)
+    const stations = [
+      {
+        id: 1,
+        title: "看見",
+        topic: "別人的人生",
+        quote: "原來職涯，不只有一種走法。",
+        did: "聽見不同的職涯故事，開始想像自己的未來。",
+        left: "期初期待卡",
+        prompt: "那時候的我：「我當時對未來的想像是……」",
+        defaultThought: "我還不知道未來到底要往哪裡走。"
+      },
+      {
+        id: 2,
+        title: "認識",
+        topic: "我的人生",
+        quote: "我開始把目光從「別人的人生」放回自己身上。",
+        did: "透過自我探索，看見自己的特質、能力與可能性。",
+        left: "曼陀羅九宮格",
+        prompt: "那時候的我：「原來我是一個……的人。」",
+        defaultThought: "我發現自己其實很在意與人的真實連結。"
+      },
+      {
+        id: 3,
+        title: "表達",
+        topic: "我的定位",
+        quote: "我開始練習，把「我是誰」說給別人聽。",
+        did: "整理自己的特質與價值，練習用自己的方式介紹自己。",
+        left: "3 分鐘 Pitch ／ 故事卡",
+        prompt: "那時候的我：「如果只能用幾句話介紹自己，我會說……」",
+        defaultThought: "這是我第一次勇敢把自己的價值清楚說出來。"
+      },
+      {
+        id: 4,
+        title: "呈現",
+        topic: "我的名片",
+        quote: "我開始把自己的定位，變成看得見的東西。",
+        did: "把自己的定位轉化成一張真正可以帶走的個人名片。",
+        left: "個人名片作品",
+        prompt: "那時候的我：「如果別人只看到我一張名片，我希望他記得……」",
+        defaultThought: "這張名片代表了我現在最真實的模樣。"
+      },
+      {
+        id: 5,
+        title: "探索",
+        topic: "我的未來",
+        quote: "我不一定已經知道答案，但開始知道可以往哪裡試。",
+        did: "從自己的能力與興趣出發，探索可能的職涯方向與下一步。",
+        left: "職涯探索紀錄",
+        prompt: "那時候的我：「我可能想試試看……」",
+        defaultThought: "不再害怕迷惘，而是帶著好奇去嘗試。"
+      },
+      {
+        id: 6,
+        title: "回顧",
+        topic: "我的成長",
+        quote: "走到這裡，我開始看見自己一路上的變化。",
+        did: "回頭檢視前五堂課的成果，拼出屬於自己的地圖。",
+        left: "個人回顧與成長反思",
+        prompt: "走到這裡：「我看見自己最大的不同是……」",
+        defaultThought: "我比當初那個站在起點的自己，更踏實了。"
+      }
     ];
 
-    let store = JSON.parse(localStorage.getItem('journey_archive_2026') || '{}');
+    let appData = JSON.parse(localStorage.getItem('thu_mentorship_2026') || '{}');
 
-    // 渲染旅程時間軸
-    const timelineContainer = document.getElementById('timeline-stream');
-    
-    curriculum.forEach(item => {
-      const data = store[item.id] || { img: '', memory: '' };
-      const hasContent = data.img ? 'has-content' : '';
+    // 渲染 S-Curve 蜿蜒地圖
+    const track = document.getElementById('journey-stations-container');
+    stations.forEach((s, idx) => {
+      const isRight = (idx % 2 === 1);
+      const shiftClass = isRight ? 'shift-right' : 'shift-left';
+      const sData = appData[s.id] || { img: '', thought: '' };
 
-      const section = document.createElement('div');
-      section.className = `station-item ${hasContent}`;
-      section.id = `station-${item.id}`;
-      section.innerHTML = `
-        <div class="station-dot"></div>
-        <div class="station-meta">
-          <span class="station-num">0${item.id}</span>
-          <h2 class="station-tagline">${item.name}</h2>
-          <span class="station-topic">/ ${item.subtitle}</span>
-        </div>
-        
-        <div class="artwork-stage" onclick="triggerFile(${item.id})">
-          <div class="artwork-frame" id="frame-${item.id}">
-            ${data.img ? `<img src="${data.img}" id="view-${item.id}">` : `
-              <div class="artwork-placeholder" id="ph-${item.id}">
-                <p style="font-weight: 700; margin-bottom: 4px;">＋ 留下這一站的作品</p>
-                <p style="font-size: 0.75rem; opacity: 0.7;">照片、筆記、投影片或手寫卡</p>
-              </div>
-            `}
-            <span class="hover-badge">更換作品</span>
+      const sectionEl = document.createElement('div');
+      sectionEl.className = `map-station ${shiftClass}`;
+      sectionEl.innerHTML = `
+        <div class="station-box">
+          <div class="station-num-row">
+            <span>THU 企業導生社 ｜ 2026 下學期</span>
+            <span style="font-weight:900;">0${s.id} / 06</span>
           </div>
-          <input type="file" id="upload-${item.id}" accept="image/*" style="display:none" onchange="uploadImage(event, ${item.id})">
-        </div>
 
-        <div class="station-memory">
-          <label class="memory-label">我記得那時候……</label>
-          <input type="text" class="memory-input" value="${data.memory || ''}" 
-                 placeholder="${item.prompt}" 
-                 onchange="saveMemory(${item.id}, this.value)">
+          <h3 class="station-headline">${s.title} ｜ ${s.topic}</h3>
+          <div class="station-quote-sub">「${s.quote}」</div>
+
+          <div class="station-detail-item">
+            <strong>這一堂，我做了什麼？</strong>
+            <div>${s.did}</div>
+          </div>
+
+          <div class="station-detail-item">
+            <strong>我留下了什麼？（作品照片）</strong>
+            <div class="photo-stage" onclick="pickImage(${s.id})">
+              ${sData.img ? `<img src="${sData.img}" id="preview-img-${s.id}">` : `
+                <div class="photo-empty-state" id="empty-box-${s.id}">
+                  <div class="icon">📷</div>
+                  <div style="font-weight:700; font-size:0.85rem;">上傳：${s.left}</div>
+                  <div style="font-size:0.7rem; opacity:0.7;">點擊選取照片或拍照</div>
+                </div>
+              `}
+              <span class="photo-hover-tag">更換作品照片</span>
+              <input type="file" id="file-input-${s.id}" accept="image/*" style="display:none;" onchange="handleUpload(event, ${s.id})">
+            </div>
+          </div>
+
+          <div class="station-detail-item" style="margin-bottom:0;">
+            <strong>那時候的我</strong>
+            <input type="text" class="then-input" 
+                   value="${sData.thought || ''}" 
+                   placeholder="${s.prompt}"
+                   onchange="saveStationThought(${s.id}, this.value)">
+          </div>
         </div>
       `;
-      timelineContainer.appendChild(section);
+      track.appendChild(sectionEl);
+
+      // 加中間連接虛線
+      if (idx < stations.length - 1) {
+        const conn = document.createElement('div');
+        conn.className = 'map-connector';
+        track.appendChild(conn);
+      }
     });
 
-    // 載入第 6 堂文字
-    if (store.summary) {
-      document.getElementById('summary-now').value = store.summary.now || '';
-      document.getElementById('summary-next').value = store.summary.next || '';
+    // 初始化已儲存資料
+    if (appData.startThought) {
+      document.getElementById('start-thought').value = appData.startThought;
+      document.getElementById('preview-start-text').innerText = `「${appData.startThought}」`;
+    }
+    if (appData.nowReflection) {
+      document.getElementById('now-reflection').value = appData.nowReflection;
+    }
+    if (appData.next) {
+      document.getElementById('next-explore').value = appData.next.explore || '';
+      document.getElementById('next-skill').value = appData.next.skill || '';
+      document.getElementById('next-action').value = appData.next.action || '';
     }
 
-    updateTracker();
-
-    function triggerFile(id) {
-      document.getElementById(`upload-${id}`).click();
+    // 上傳圖片處理
+    function pickImage(id) {
+      document.getElementById(`file-input-${id}`).click();
     }
 
-    function uploadImage(e, id) {
-      const file = e.target.files[0];
+    function handleUpload(event, id) {
+      const file = event.target.files[0];
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function(evt) {
-        const base64 = evt.target.result;
-        store[id] = store[id] || {};
-        store[id].img = base64;
-        localStorage.setItem('journey_archive_2026', JSON.stringify(store));
+      reader.onload = function(e) {
+        const base64 = e.target.result;
+        appData[id] = appData[id] || {};
+        appData[id].img = base64;
+        localStorage.setItem('thu_mentorship_2026', JSON.stringify(appData));
 
-        const frame = document.getElementById(`frame-${id}`);
-        frame.innerHTML = `<img src="${base64}" id="view-${id}"><span class="hover-badge">更換作品</span>`;
-        document.getElementById(`station-${id}`).classList.add('has-content');
-        updateTracker();
+        const stage = event.target.closest('.photo-stage');
+        stage.innerHTML = `
+          <img src="${base64}" id="preview-img-${id}">
+          <span class="photo-hover-tag">更換作品照片</span>
+          <input type="file" id="file-input-${id}" accept="image/*" style="display:none;" onchange="handleUpload(event, ${id})">
+        `;
       };
       reader.readAsDataURL(file);
     }
 
-    function saveMemory(id, val) {
-      store[id] = store[id] || {};
-      store[id].memory = val;
-      localStorage.setItem('journey_archive_2026', JSON.stringify(store));
+    function saveStationThought(id, val) {
+      appData[id] = appData[id] || {};
+      appData[id].thought = val;
+      localStorage.setItem('thu_mentorship_2026', JSON.stringify(appData));
     }
 
-    function saveSummary() {
-      store.summary = {
-        now: document.getElementById('summary-now').value,
-        next: document.getElementById('summary-next').value
+    function saveField(key, val) {
+      appData[key] = val;
+      localStorage.setItem('thu_mentorship_2026', JSON.stringify(appData));
+      if (key === 'startThought') {
+        document.getElementById('preview-start-text').innerText = `「${val}」`;
+      }
+    }
+
+    function saveNext() {
+      appData.next = {
+        explore: document.getElementById('next-explore').value,
+        skill: document.getElementById('next-skill').value,
+        action: document.getElementById('next-action').value
       };
-      localStorage.setItem('journey_archive_2026', JSON.stringify(store));
-      updateTracker();
+      localStorage.setItem('thu_mentorship_2026', JSON.stringify(appData));
     }
 
-    function updateTracker() {
-      let completedCount = 0;
-      for (let i = 1; i <= 5; i++) {
-        if (store[i] && store[i].img) {
-          completedCount++;
-          document.getElementById(`dot-${i}`).classList.add('active');
-        } else {
-          document.getElementById(`dot-${i}`).classList.remove('active');
-        }
-      }
-      if (store.summary && (store.summary.now || store.summary.next)) {
-        completedCount++;
-        document.getElementById('dot-6').classList.add('active');
-      } else {
-        document.getElementById('dot-6').classList.remove('active');
-      }
+    // 生成最終成長地圖
+    function generateGrowthMap() {
+      const flowContainer = document.getElementById('poster-nodes-flow');
+      flowContainer.innerHTML = '';
 
-      document.getElementById('journey-percentage').innerText = `0${completedCount} / 06 STATIONS COMPLETED`;
-    }
+      // 組裝 6 堂課成果微節點
+      stations.forEach(s => {
+        const sData = appData[s.id] || {};
+        const imgSource = sData.img || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect fill="%23222" width="50" height="50"/></svg>';
+        const thoughtText = sData.thought || s.defaultThought;
 
-    // 生成 IG Story 成果卡
-    function curateMyStory() {
-      const gallery = document.getElementById('export-gallery');
-      gallery.innerHTML = '';
-
-      // 產生前 5 堂縮圖 + 第 6 堂文字格
-      curriculum.forEach(item => {
-        const data = store[item.id];
-        const img = data && data.img ? data.img : '';
         const node = document.createElement('div');
-        node.className = 'export-gallery-item';
-        if (img) {
-          node.innerHTML = `<img src="${img}"><span class="export-gallery-tag">0${item.id} ${item.name}</span>`;
-        } else {
-          node.innerHTML = `<div style="width:100%;height:100%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:#444;font-size:0.65rem;">無紀錄</div><span class="export-gallery-tag">0${item.id}</span>`;
-        }
-        gallery.appendChild(node);
+        node.className = 'poster-flow-node';
+        node.innerHTML = `
+          <img class="poster-flow-thumb" src="${imgSource}">
+          <div class="poster-flow-meta">
+            <div class="poster-flow-title">0${s.id} ${s.title} ｜ ${s.topic}</div>
+            <div class="poster-flow-saying">「${thoughtText}」</div>
+          </div>
+        `;
+        flowContainer.appendChild(node);
       });
 
-      // 第 6 格填入品牌或回顧象徵圖塊
-      const l6Node = document.createElement('div');
-      l6Node.className = 'export-gallery-item';
-      l6Node.innerHTML = `
-        <div style="width:100%;height:100%;background:var(--accent-green);color:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;text-align:center;">
-          <span style="font-family:var(--font-display);font-weight:800;font-size:0.8rem;">FIN</span>
-          <span style="font-size:0.6rem;font-weight:700;">成長回顧</span>
-        </div>
-        <span class="export-gallery-tag" style="background:#111;">06 回顧</span>
-      `;
-      gallery.appendChild(l6Node);
+      // 填寫 NOW & NEXT
+      const startText = appData.startThought || '帶著探索與好奇加入企業導生社。';
+      const nowText = appData.nowReflection || '我走過了這六步，對自己的方向有了更踏實的認識。';
+      const nextPlan = appData.next && (appData.next.explore || appData.next.action) 
+        ? `${appData.next.explore || ''} ｜ ${appData.next.action || ''}` 
+        : '帶著這份積累，邁向下一個實戰挑戰。';
 
-      // 填入三段式自我對照
-      const startQuote = (store[1] && store[1].memory) ? store[1].memory : '當時還沒摸清方向，帶著期待出發。';
-      const nowQuote = (store.summary && store.summary.now) ? store.summary.now : '走完這幾站，心裡慢慢有了清晰的形狀。';
-      const nextQuote = (store.summary && store.summary.next) ? store.summary.next : '帶著這些發現，繼續向下一個目標出發。';
+      document.getElementById('p-start-val').innerText = `「${startText}」`;
+      document.getElementById('p-now-val').innerText = `「${nowText}」`;
+      document.getElementById('p-next-val').innerText = `「${nextPlan}」`;
 
-      document.getElementById('card-start-quote').innerText = `「${startQuote}」`;
-      document.getElementById('card-now-quote').innerText = `「${nowQuote}」`;
-      document.getElementById('card-next-quote').innerText = `「${nextQuote}」`;
-
-      const resultBox = document.getElementById('curated-result');
-      resultBox.style.display = 'block';
-      resultBox.scrollIntoView({ behavior: 'smooth' });
+      const area = document.getElementById('poster-display-area');
+      area.style.display = 'block';
+      area.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function downloadStoryImage() {
-      const card = document.getElementById('story-canvas-export');
-      html2canvas(card, {
-        scale: 3, // 高清輸出，確保手機看字體不模糊
+    // 高清下載海報
+    function downloadGrowthImage() {
+      const target = document.getElementById('growth-map-poster');
+      html2canvas(target, {
+        scale: 3, // 3倍高清，文字超清晰
         useCORS: true,
-        backgroundColor: '#111111'
+        backgroundColor: '#121212'
       }).then(canvas => {
         const link = document.createElement('a');
-        link.download = 'MY-JOURNEY-2026.png';
+        link.download = 'THU-Mentorship-Growth-Map-2026.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
       });
